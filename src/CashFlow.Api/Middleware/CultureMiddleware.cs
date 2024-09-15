@@ -19,7 +19,7 @@ public class CultureMiddleware(RequestDelegate next)
 
         
         
-        if (!string.IsNullOrEmpty(requestedCulture)
+            if (!string.IsNullOrEmpty(requestedCulture)
             && SupportedCultures.Contains(requestedCulture))
         {
             cultureInfo = new CultureInfo(requestedCulture);
