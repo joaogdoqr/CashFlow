@@ -2,7 +2,7 @@
 
 namespace CashFlow.Communication.Requests
 {
-    public class RequestRegisterExpense
+    public class RequestExpense
     {
         public required string Title { get; set; }
         public required string Description { get; set; }

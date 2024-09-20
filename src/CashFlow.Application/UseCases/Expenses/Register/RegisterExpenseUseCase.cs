@@ -1,4 +1,4 @@
-﻿using CashFlow.Communication.Enums;
+﻿using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Entities;
@@ -8,34 +8,28 @@ using CashFlow.Exception.ExceptionsBase;
 
 namespace CashFlow.Application.UseCases.Expenses.Register
 {
-    public class RegisterExpenseUseCase(IExpensesRepository repository, IUnitOfWork unitOfWork) : IRegisterExpenseUseCase
+    public class RegisterExpenseUseCase(IExpensesWriteOnlyRepository repository, IUnitOfWork unitOfWork, IMapper mapper) : IRegisterExpenseUseCase
     {
-        private readonly IExpensesRepository _repository = repository;
+        private readonly IExpensesWriteOnlyRepository _repository = repository;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly IMapper _mapper = mapper;
 
-        public ResponseRegisterExpense Execute(RequestRegisterExpense request)
+        public async Task<ResponseRegisterExpense> Execute(RequestExpense request)
         {
             Validate(request);
 
-           var entity =  new Expense()
-            {
-                Title = request.Title,
-                Description = request.Description,
-                Amount = request.Amount,
-                Date = request.Date,
-                PaymentType = (Domain.Enums.PaymentType)request.PaymentType,
-            };
+            var entity = _mapper.Map<Expense>(request);
 
-            _repository.Add(entity);
+            await _repository.Add(entity);
 
-            _unitOfWork.Commit();
+            await _unitOfWork.Commit();
 
-            return new ResponseRegisterExpense() { Title = request.Title };
+            return _mapper.Map<ResponseRegisterExpense>(entity);
         }
 
-        private void Validate(RequestRegisterExpense request)
+        private void Validate(RequestExpense request)
         {
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
 
             var result = validator.Validate(request);
 
