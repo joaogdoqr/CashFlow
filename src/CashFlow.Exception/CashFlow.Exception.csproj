@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ResourceErrorMessages.pt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ResourceErrorMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceErrorMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="ResourceErrorMessages.resx.pt.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceErrorMessages.resx.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -22,11 +21,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ResourceErrorMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Update="ResourceErrorMessages.resx.pt.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ResourceErrorMessages.resx.pt.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

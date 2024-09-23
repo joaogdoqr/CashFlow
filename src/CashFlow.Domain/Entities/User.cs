@@ -1,4 +1,6 @@
-﻿namespace CashFlow.Domain.Entities
+﻿using CashFlow.Domain.Enums;
+
+namespace CashFlow.Domain.Entities
 {
     public class User
     {
@@ -12,6 +14,6 @@
 
         public Guid UserIdentifier { get; set; }
 
-        public required string Role { get; set; }
+        public required string Role { get; set; } = Roles.TEAM_MEMBER;
     }
 }

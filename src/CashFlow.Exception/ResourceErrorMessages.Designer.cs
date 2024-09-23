@@ -70,7 +70,34 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense cannot be found.
+        ///   Looks up a localized string similar to The e-mail is already registered.
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The e-mail cannot be empty..
+        /// </summary>
+        public static string EMAIL_EMPTY {
+            get {
+                return ResourceManager.GetString("EMAIL_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The e-mail is invalid..
+        /// </summary>
+        public static string EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expense not found.
         /// </summary>
         public static string EXPENSE_NOT_FOUND {
             get {
@@ -79,16 +106,34 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The date must be less than or equal to current date.
+        ///   Looks up a localized string similar to Expenses cannot be for the future.
         /// </summary>
-        public static string EXPENSES_CANNOT_BE_FOR_THE_FUTURE {
+        public static string EXPENSES_CANNOT_FOR_THE_FUTURE {
             get {
-                return ResourceManager.GetString("EXPENSES_CANNOT_BE_FOR_THE_FUTURE", resourceCulture);
+                return ResourceManager.GetString("EXPENSES_CANNOT_FOR_THE_FUTURE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The payment type must be valid.
+        ///   Looks up a localized string similar to Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number..
+        /// </summary>
+        public static string INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name cannot be empty..
+        /// </summary>
+        public static string NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Type is not valid..
         /// </summary>
         public static string PAYMENT_TYPE_INVALID {
             get {
@@ -97,7 +142,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The title must not be empty.
+        ///   Looks up a localized string similar to The title is required..
         /// </summary>
         public static string TITLE_REQUIRED {
             get {

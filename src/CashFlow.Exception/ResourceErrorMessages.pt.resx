@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,22 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UNKNOWN_ERROR" xml:space="preserve">
-    <value>Erro desconhecido</value>
-  </data>
-  <data name="TITLE_REQUIRED" xml:space="preserve">
-    <value>O título não deve ser vazio</value>
-  </data>
   <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
     <value>A quantidade deve ser maior que zero</value>
   </data>
-  <data name="EXPENSES_CANNOT_BE_FOR_THE_FUTURE" xml:space="preserve">
-    <value>A data precisa ser anterior ou igual a data atual</value>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>O e-mail não pode ser vazio</value>
   </data>
-  <data name="PAYMENT_TYPE_INVALID" xml:space="preserve">
-    <value>O método de pagamento deve ser válido</value>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>O e-mail está inválido</value>
+  </data>
+  <data name="EXPENSES_CANNOT_FOR_THE_FUTURE" xml:space="preserve">
+    <value>A despesa não pode ser para o futuro</value>
   </data>
   <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
-    <value>A despesa não pode ser encontrada</value>
+    <value>Não foi possível encontrar a despesa</value>
+  </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>A sua senha deve ter pelo menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula e um número.</value>
+  </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nome não pode ser vazio</value>
+  </data>
+  <data name="PAYMENT_TYPE_INVALID" xml:space="preserve">
+    <value>O tipo de pagamento é invalido</value>
+  </data>
+  <data name="TITLE_REQUIRED" xml:space="preserve">
+    <value>O título é obrigatório</value>
+  </data>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Erro desconhecido</value>
+  </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>O e-mail já está cadastrado</value>
   </data>
 </root>
