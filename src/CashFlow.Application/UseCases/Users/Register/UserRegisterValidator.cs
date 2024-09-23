@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace CashFlow.Application.UseCases.Users.Register
 {
-    public class RegisterUserValidator: AbstractValidator<RequestRegisterUser>
+    public class UserRegisterValidator : AbstractValidator<RequestRegisterUser>
     {
-        public RegisterUserValidator()
+        public UserRegisterValidator()
         {
             RuleFor(user => user.Name).NotEmpty().WithMessage(ResourceErrorMessages.NAME_EMPTY);
             RuleFor(user => user.Email)
@@ -14,7 +14,7 @@ namespace CashFlow.Application.UseCases.Users.Register
                 .WithMessage(ResourceErrorMessages.EMAIL_EMPTY)
                 .EmailAddress()
                 .WithMessage(ResourceErrorMessages.EMAIL_INVALID);
-           RuleFor(user => user.Password).SetValidator(new PasswordValidator<RequestRegisterUser>());
+            RuleFor(user => user.Password).SetValidator(new PasswordValidator<RequestRegisterUser>());
         }
     }
 }

@@ -5,6 +5,7 @@ using CashFlow.Domain.Entities;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Cryptography;
+using CashFlow.Domain.Security.Tokens;
 using CashFlow.Exception;
 using CashFlow.Exception.ExceptionsBase;
 using FluentValidation.Results;
@@ -12,13 +13,14 @@ using FluentValidation.Results;
 namespace CashFlow.Application.UseCases.Users.Register
 {
     public class RegisterUserUseCase(IUserReadOnlyRepository userReadOnlyRepository, IUserWriteOnlyRepository userWriteOnlyRepository, IUnitOfWork unitOfWork,
-        IMapper mapper, IPasswordEncrypter passwordEncrypter) : IRegisterUserUseCase
+        IMapper mapper, IPasswordEncrypter passwordEncrypter, IAccessTokenGenerator tokenGenerator) : IRegisterUserUseCase
     {
         private readonly IUserReadOnlyRepository _userReadOnlyRepository = userReadOnlyRepository;
         private readonly IUserWriteOnlyRepository _userWriteOnlyRepository = userWriteOnlyRepository;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IMapper _mapper = mapper;
         private readonly IPasswordEncrypter _passwordEncrypter = passwordEncrypter;
+        private readonly IAccessTokenGenerator _tokenGenerator = tokenGenerator;
 
         public async Task<ResponseRegisteredUser> Execute(RequestRegisterUser request)
         {
@@ -32,12 +34,12 @@ namespace CashFlow.Application.UseCases.Users.Register
 
             await _unitOfWork.Commit();
 
-            return new ResponseRegisteredUser { Name = user.Name };
+            return new ResponseRegisteredUser { Name = user.Name, Token = _tokenGenerator.Generate(user) };
         }
 
         public async Task Validate(RequestRegisterUser request)
         {
-            var result = new RegisterUserValidator().Validate(request);
+            var result = new UserRegisterValidator().Validate(request);
 
             var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
             if (emailExist)

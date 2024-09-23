@@ -150,4 +150,7 @@
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>O nome não pode ser vazio</value>
   </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>O e-mail e/ou senha está inválido</value>
+  </data>
 </root>
