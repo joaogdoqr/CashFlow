@@ -127,19 +127,16 @@
     <value>O e-mail está inválido</value>
   </data>
   <data name="EXPENSES_CANNOT_FOR_THE_FUTURE" xml:space="preserve">
-    <value>A despesa não pode ser para o futuro</value>
+    <value>Despesas não podem ser para o futuro</value>
   </data>
   <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
     <value>Não foi possível encontrar a despesa</value>
   </data>
   <data name="INVALID_PASSWORD" xml:space="preserve">
-    <value>A sua senha deve ter pelo menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula e um número.</value>
-  </data>
-  <data name="NAME_EMPTY" xml:space="preserve">
-    <value>O nome não pode ser vazio</value>
+    <value>A senha deve conter pelo menos 8 caracteres e incluir pelo menos uma letra maiúscula, uma letra minúscula , um número e um caractere especial</value>
   </data>
   <data name="PAYMENT_TYPE_INVALID" xml:space="preserve">
-    <value>O tipo de pagamento é invalido</value>
+    <value>Método de pagamento inválido</value>
   </data>
   <data name="TITLE_REQUIRED" xml:space="preserve">
     <value>O título é obrigatório</value>
@@ -149,5 +146,8 @@
   </data>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
     <value>O e-mail já está cadastrado</value>
+  </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nome não pode ser vazio</value>
   </data>
 </root>
