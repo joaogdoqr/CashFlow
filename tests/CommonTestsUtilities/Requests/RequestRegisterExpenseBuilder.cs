@@ -2,7 +2,7 @@ using Bogus;
 using CashFlow.Communication.Enums;
 using CashFlow.Communication.Requests;
 
-namespace CommonTestsUtilities;
+namespace CommonTestsUtilities.Requests;
 
 public class RequestRegisterExpenseBuilder
 {

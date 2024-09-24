@@ -1,7 +1,7 @@
 using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Communication.Enums;
 using CashFlow.Exception;
-using CommonTestsUtilities;
+using CommonTestsUtilities.Requests;
 using FluentAssertions;
 
 namespace Validators.Tests.Expenses.Register;
@@ -54,7 +54,7 @@ public class RegisterExpenseValidatorTests
         
         // Assert
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e=>e.ErrorMessage.Equals(ResourceErrorMessages.EXPENSES_CANNOT_BE_FOR_THE_FUTURE));
+        result.Errors.Should().ContainSingle().And.Contain(e=>e.ErrorMessage.Equals(ResourceErrorMessages.EXPENSES_CANNOT_FOR_THE_FUTURE));
     }
     
     [Fact]

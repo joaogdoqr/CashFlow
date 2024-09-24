@@ -35,7 +35,7 @@ namespace CashFlow.Api
         {
             services.AddAutoMapper(opt =>
             {
-                opt.AddProfile<ExpenseMapper>();
+                opt.AddProfile<AutoMapping>();
             });
         }
     }

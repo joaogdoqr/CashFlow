@@ -39,7 +39,7 @@ namespace CashFlow.Application.UseCases.Users.Register
 
         public async Task Validate(RequestRegisterUser request)
         {
-            var result = new UserRegisterValidator().Validate(request);
+            var result = new RegisterUserValidator().Validate(request);
 
             var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
             if (emailExist)

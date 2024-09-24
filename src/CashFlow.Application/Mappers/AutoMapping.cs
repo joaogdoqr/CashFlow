@@ -5,9 +5,9 @@ using CashFlow.Domain.Entities;
 
 namespace CashFlow.Application.Mappers
 {
-    public class ExpenseMapper : Profile
+    public class AutoMapping : Profile
     {
-        public ExpenseMapper()
+        public AutoMapping()
         {
             RequestToEntity();
             EntityToResponse();
