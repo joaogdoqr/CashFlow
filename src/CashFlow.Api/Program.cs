@@ -1,9 +1,11 @@
 using CashFlow.Api;
 using CashFlow.Api.Filters;
 using CashFlow.Api.Middleware;
+using CashFlow.Api.Token;
 using CashFlow.Infrastructure;
 using CashFlow.Infrastructure.Extensions;
 using CashFlow.Infrastructure.Migrations;
+using CashFlow.Infrastructure.Security.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -49,6 +51,9 @@ builder.Services.AddSwaggerGen(config =>
 builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionFilter)));
 builder.Services.AddInfraestructure(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 
 var signingKey = builder.Configuration.GetValue<string>("Settings:Jwt:SigninKey");
 

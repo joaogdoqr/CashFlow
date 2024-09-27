@@ -6,11 +6,6 @@ namespace CashFlow.Domain.Repositories.Expenses
     {
         Task Add(Expense expense);
 
-        /// <summary>
-        /// Returns true if deleted successfully
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task<bool> Delete(long id);
+        Task Delete(long id);
     }
 }
