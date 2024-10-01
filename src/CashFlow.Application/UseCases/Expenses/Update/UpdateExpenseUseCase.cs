@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expenses;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Services.LoggedUser;
@@ -22,7 +22,7 @@ namespace CashFlow.Application.UseCases.Expenses.Update
 
             var loggedUser = await _loggedUser.Get();
 
-            var expense = await _repository.GetByIdAndUser(id, loggedUser) ?? throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
+            var expense = await _repository.GetById(id, loggedUser) ?? throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
 
             _mapper.Map(request, expense);
 

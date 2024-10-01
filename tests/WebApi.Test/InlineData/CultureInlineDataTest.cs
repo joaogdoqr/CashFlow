@@ -6,9 +6,9 @@ namespace WebApi.Tests.InlineData
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new [] { "fr" };
-            yield return new [] { "pt-PT" };
+            yield return new [] { "en" };
             yield return new [] { "pt-BR" };
+            yield return new [] { "pt-PT" };
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

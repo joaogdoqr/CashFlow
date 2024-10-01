@@ -5,10 +5,14 @@ using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Application.UseCases.Expenses.Update;
 using CashFlow.Application.UseCases.Login;
+using CashFlow.Application.UseCases.Users;
+using CashFlow.Application.UseCases.Users.ChangePassoword;
+using CashFlow.Application.UseCases.Users.Profile;
 using CashFlow.Application.UseCases.Users.Register;
+using CashFlow.Application.UseCases.Users.Update;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CashFlow.Api
+namespace CashFlow.Application
 {
     public static class DependencyInjectionExtension
     {
@@ -27,6 +31,9 @@ namespace CashFlow.Api
             services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
 
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+            services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+            services.AddScoped<IUpdateUserProfileUseCase, UpdateUserProfileUseCase>();
+            services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
 
             services.AddScoped<ILoginUseCase, LoginUseCase>();
         }

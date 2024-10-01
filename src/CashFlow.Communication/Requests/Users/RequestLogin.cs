@@ -1,4 +1,4 @@
-﻿namespace CashFlow.Communication.Requests
+﻿namespace CashFlow.Communication.Requests.Users
 {
     public class RequestLogin
     {

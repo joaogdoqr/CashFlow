@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Users;
 using CashFlow.Communication.Responses.User;
 using CashFlow.Domain.Entities;
 using CashFlow.Domain.Repositories;

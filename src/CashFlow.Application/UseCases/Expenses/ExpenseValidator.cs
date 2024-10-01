@@ -1,4 +1,4 @@
-﻿using CashFlow.Communication.Requests;
+﻿using CashFlow.Communication.Requests.Expenses;
 using CashFlow.Exception;
 using FluentValidation;
 

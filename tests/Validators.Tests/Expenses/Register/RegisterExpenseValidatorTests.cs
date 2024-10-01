@@ -1,7 +1,7 @@
 using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Communication.Enums;
 using CashFlow.Exception;
-using CommonTestsUtilities.Requests;
+using CommonTestsUtilities.Requests.Expenses;
 using FluentAssertions;
 
 namespace Validators.Tests.Expenses.Register;
@@ -13,7 +13,7 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange 
         var validator = new ExpenseValidator();
-        var request = RequestRegisterExpenseBuilder.Build();
+        var request = RequestExpenseBuilder.Build();
         
         // Act
         var result = validator.Validate(request);
@@ -30,7 +30,7 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange 
         var validator = new ExpenseValidator();
-        var request = RequestRegisterExpenseBuilder.Build();
+        var request = RequestExpenseBuilder.Build();
         request.Title = title;
         
         // Act
@@ -46,7 +46,7 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange 
         var validator = new ExpenseValidator();
-        var request = RequestRegisterExpenseBuilder.Build();
+        var request = RequestExpenseBuilder.Build();
         request.Date = DateTime.UtcNow.AddDays(5);
         
         // Act
@@ -62,7 +62,7 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange 
         var validator = new ExpenseValidator();
-        var request = RequestRegisterExpenseBuilder.Build();
+        var request = RequestExpenseBuilder.Build();
         request.PaymentType = (PaymentType)999;
         
         // Act
@@ -80,7 +80,7 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange 
         var validator = new ExpenseValidator();
-        var request = RequestRegisterExpenseBuilder.Build();
+        var request = RequestExpenseBuilder.Build();
         request.Amount = amount;
         
         // Act

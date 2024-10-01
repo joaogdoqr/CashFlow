@@ -17,7 +17,7 @@ namespace CashFlow.Application.UseCases.Expenses.GetById
         {
             var loggedUser = await _loggedUser.Get();
 
-            var expense = await _repository.GetByIdAndUser(id, loggedUser) ?? throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
+            var expense = await _repository.GetById(id, loggedUser) ?? throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
 
             return _mapper.Map<ResponseExpense>(expense);
         }

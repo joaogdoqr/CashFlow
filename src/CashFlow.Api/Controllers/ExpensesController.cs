@@ -3,7 +3,7 @@ using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Application.UseCases.Expenses.Update;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expenses;
 using CashFlow.Communication.Responses;
 using CashFlow.Communication.Responses.Expenses;
 using Microsoft.AspNetCore.Authorization;

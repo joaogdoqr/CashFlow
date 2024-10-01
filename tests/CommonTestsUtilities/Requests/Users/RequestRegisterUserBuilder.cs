@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Users;
 
-namespace CommonTestsUtilities.Requests
+namespace CommonTestsUtilities.Requests.Users
 {
     public class RequestRegisterUserBuilder
     {

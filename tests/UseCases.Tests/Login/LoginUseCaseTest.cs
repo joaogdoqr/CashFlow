@@ -4,8 +4,8 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionsBase;
 using CommonTestsUtilities.Cryptography;
 using CommonTestsUtilities.Entities;
-using CommonTestsUtilities.Repositories;
-using CommonTestsUtilities.Requests;
+using CommonTestsUtilities.Repositories.Users;
+using CommonTestsUtilities.Requests.Login;
 using CommonTestsUtilities.Token;
 using FluentAssertions;
 

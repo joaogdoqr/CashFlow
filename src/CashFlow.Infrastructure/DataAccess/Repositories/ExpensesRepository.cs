@@ -20,20 +20,20 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
             _dbContext.Expenses.Remove(expense);
         }
 
-        public async Task<List<Expense>> GetAllByUser(User user)
+        public async Task<List<Expense>> GetAll(User user)
         {
             return await _dbContext.Expenses.AsNoTracking()
                 .Where(expense => expense.UserId == user.Id)
                 .ToListAsync();
         }
 
-        async Task<Expense?> IExpensesReadOnlyRepository.GetByIdAndUser(long id, User user)
+        async Task<Expense?> IExpensesReadOnlyRepository.GetById(long id, User user)
         {
             return await _dbContext.Expenses.AsNoTracking()
                 .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == user.Id);
         }
 
-        async Task<Expense?> IExpensesUpdateOnlyRepository.GetByIdAndUser(long id, User user)
+        async Task<Expense?> IExpensesUpdateOnlyRepository.GetById(long id, User user)
         {
             return await _dbContext.Expenses
                 .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == user.Id);

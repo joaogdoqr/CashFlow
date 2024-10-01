@@ -1,5 +1,5 @@
 ﻿using CashFlow.Application.UseCases.Login;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Users;
 using CashFlow.Communication.Responses;
 using CashFlow.Communication.Responses.User;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,6 @@
 ﻿using CashFlow.Communication.Enums;
 
-namespace CashFlow.Communication.Requests
+namespace CashFlow.Communication.Requests.Expenses
 {
     public class RequestExpense
     {

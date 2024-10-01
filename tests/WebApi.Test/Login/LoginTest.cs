@@ -1,30 +1,34 @@
-﻿using CashFlow.Communication.Requests;
+﻿using CashFlow.Communication.Requests.Users;
 using CashFlow.Exception;
-using CommonTestsUtilities.Requests;
+using CommonTestsUtilities.Requests.Login;
 using FluentAssertions;
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using WebApi.Tests.InlineData;
 
 namespace WebApi.Tests.Login
 {
-    public class LoginTest(CustomWebApplicationFactory webApplicationFactory) : IClassFixture<CustomWebApplicationFactory>
+    public class LoginTest : CashFlowFixture
     {
-        private readonly HttpClient _httpClient = webApplicationFactory.CreateClient();
         private const string METHOD = "api/Login";
-        private readonly string _email = webApplicationFactory.GetSetupEmail();
-        private readonly string _name = webApplicationFactory.GetSetupName();
-        private readonly string _password = webApplicationFactory.GetSetupPassword();
+        private readonly string _email;
+        private readonly string _name;
+        private readonly string _password;
+
+        public LoginTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
+        {
+            _email = webApplicationFactory.UserAdmin.GetEmail();
+            _name = webApplicationFactory.UserAdmin.GetName();
+            _password = webApplicationFactory.UserAdmin.GetPassword();
+        }
 
         [Fact]
         public async Task Sucess()
         {
             var request = new RequestLogin { Email = _email, Password =  _password};
 
-            var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+            var result = await DoPost(METHOD, request);
 
             result.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -37,13 +41,11 @@ namespace WebApi.Tests.Login
 
         [Theory]
         [ClassData(typeof(CultureInlineDataTest))]
-        public async Task Error_Login_Invalid(string cultureInfo)
+        public async Task Error_Login_Invalid(string culture)
         {
             var request = RequestLoginBuilder.Build();
 
-            _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-
-            var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+            var result = await DoPost(METHOD, request, culture: culture);
 
             result.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
@@ -52,7 +54,7 @@ namespace WebApi.Tests.Login
 
             var errorList = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-            var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", new CultureInfo(cultureInfo));
+            var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", new CultureInfo(culture));
 
             errorList.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
         }

@@ -1,4 +1,4 @@
-﻿using CashFlow.Communication.Requests;
+﻿using CashFlow.Communication.Requests.Users;
 using CashFlow.Communication.Responses.User;
 using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Cryptography;

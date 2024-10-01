@@ -15,7 +15,7 @@ namespace CashFlow.Application.UseCases.Expenses.GetAll
         {
             var loggedUser = await _loggedUser.Get();
 
-            var result = await _repository.GetAllByUser(loggedUser);
+            var result = await _repository.GetAll(loggedUser);
 
             return new ResponseExpenses
             {

@@ -1,10 +1,10 @@
 using Bogus;
 using CashFlow.Communication.Enums;
-using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expenses;
 
-namespace CommonTestsUtilities.Requests;
+namespace CommonTestsUtilities.Requests.Expenses;
 
-public class RequestRegisterExpenseBuilder
+public class RequestExpenseBuilder
 {
     public static RequestExpense Build()
     {
