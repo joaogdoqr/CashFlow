@@ -7,5 +7,7 @@ namespace CashFlow.Domain.Repositories.Expenses
         public Task<List<Expense>> GetAll(User user);
 
         public Task<Expense?> GetById(long id, User user);
+
+        public Task<List<Expense>> FilterByDate(DateOnly date);
     }
 }
