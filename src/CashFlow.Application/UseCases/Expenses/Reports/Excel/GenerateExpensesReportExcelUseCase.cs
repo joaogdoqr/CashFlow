@@ -1,4 +1,5 @@
 ﻿using CashFlow.Domain.Enums;
+using CashFlow.Domain.Extensions;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
@@ -34,7 +35,7 @@ public class GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repo
         {
             worksheet.Cell($"A{raw}").Value = expense.Title;
             worksheet.Cell($"B{raw}").Value = expense.Date;
-            worksheet.Cell($"C{raw}").Value = ConvertPaymentType(expense.PaymentType);
+            worksheet.Cell($"C{raw}").Value = expense.PaymentType.PaymentTypeToString();
             worksheet.Cell($"D{raw}").Value = expense.Amount;
             worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,##0.00";
             worksheet.Cell($"E{raw}").Value = expense.Description;
@@ -50,20 +51,8 @@ public class GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repo
 
         return pathInMemory.ToArray();
     }
-
-    private static string ConvertPaymentType(PaymentType payment)
-    {
-        return payment switch
-        {
-            PaymentType.Cash => ResourcePaymentType.CASH,
-            PaymentType.CreditCard => ResourcePaymentType.CREDIT_CARD,
-            PaymentType.DebitCard => ResourcePaymentType.DEBIT_CARD,
-            PaymentType.ElectronicTransfer => ResourcePaymentType.ELETRONIC_TRANSFER,
-            _ => ""
-        };
-    }
-
-    private void InsertHeader(IXLWorksheet worksheet)
+    
+    private static void InsertHeader(IXLWorksheet worksheet)
     {
         worksheet.Cells("A1:E1").Style.Font.Bold = true;
         worksheet.Cells("A1:E1").Style.Fill.BackgroundColor = XLColor.FromHtml("#F5C2B6");
