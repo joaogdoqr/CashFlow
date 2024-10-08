@@ -4,6 +4,7 @@ using CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts;
 using CashFlow.Domain.Extensions;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Services.LoggedUser;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
@@ -14,29 +15,32 @@ namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf;
 public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCase
 {
     private readonly IExpensesReadOnlyRepository _repository;
+    private readonly ILoggedUser _loggedUser;
     private const string CURRENCY_SYMBOL = "€";
     private const int HEIGHT_ROW_TABLE_EXPENSES = 25;
-
-    public GenerateExpensesReportPdfUseCase(IExpensesReadOnlyRepository repository)
+    
+    public GenerateExpensesReportPdfUseCase(IExpensesReadOnlyRepository repository, ILoggedUser loggedUser)
     {
         _repository = repository;
+        _loggedUser = loggedUser;
 
         GlobalFontSettings.FontResolver = new ExpensesReportFontResolver();
     }
 
     public async Task<byte[]> Execute(DateOnly date)
     {
-        var expenses = await _repository.FilterByDate(date);
+        var loggedUser = await _loggedUser.Get();
 
+        var expenses = await _repository.FilterByDate(loggedUser, date);
         if (expenses.Count == 0)
         {
             return [];
         }
 
-        var document = CreateDocument(date);
+        var document = CreateDocument(loggedUser.Name, date);
         var page = CreatePage(document);
 
-        CreateHeaderWithLogoAndName(page);
+        CreateHeaderWithLogoAndName(loggedUser.Name, page);
 
         var totalSpent = expenses.Sum(expense => expense.Amount);
 
@@ -88,11 +92,11 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         return RenderDocument(document);
     }
 
-    private static Document CreateDocument(DateOnly date)
+    private static Document CreateDocument(string userName, DateOnly date)
     {
         var document = new Document();
         document.Info.Title = $"{ResourceReportGenerationMessages.ESPENSES_FOR} {date:Y}";
-        document.Info.Author = "CashFlow";
+        document.Info.Author = userName;
 
         var style = document.Styles["Normal"];
         style!.Font.Name = FontHelper.RALEWAY_REGULAR;
@@ -113,7 +117,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         return section;
     }
 
-    private static void CreateHeaderWithLogoAndName(Section page)
+    private static void CreateHeaderWithLogoAndName(string userName, Section page)
     {
         var table = page.AddTable();
         table.AddColumn();
@@ -127,7 +131,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
 
         row.Cells[0].AddImage(logo);
 
-        row.Cells[1].AddParagraph("Hey, tux");
+        row.Cells[1].AddParagraph($"Hey, {userName}");
         row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_BLACK, Size = 16 };
         row.Cells[1].VerticalAlignment = VerticalAlignment.Center;
     }

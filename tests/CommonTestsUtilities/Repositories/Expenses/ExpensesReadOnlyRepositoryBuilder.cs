@@ -6,7 +6,7 @@ namespace CommonTestsUtilities.Repositories.Expenses
 {
     public class ExpensesReadOnlyRepositoryBuilder
     {
-        private readonly Mock<IExpensesReadOnlyRepository> _repository = new Mock<IExpensesReadOnlyRepository>();
+        private readonly Mock<IExpensesReadOnlyRepository> _repository = new();
 
         public ExpensesReadOnlyRepositoryBuilder GetAll(User user, List<Expense> expenses)
         {
@@ -19,6 +19,13 @@ namespace CommonTestsUtilities.Repositories.Expenses
         {
             if(expense is not null)
                 _repository.Setup(repository => repository.GetById(expense.Id, user)).ReturnsAsync(expense);
+
+            return this;
+        }
+
+        public ExpensesReadOnlyRepositoryBuilder FilterByDate(User user, List<Expense> expenses)
+        {
+            _repository.Setup(repository => repository.FilterByDate(user, It.IsAny<DateOnly>())).ReturnsAsync(expenses);
 
             return this;
         }

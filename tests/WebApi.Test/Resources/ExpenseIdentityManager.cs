@@ -7,5 +7,7 @@ namespace WebApi.Tests.Resources
         private readonly Expense _expense = expense;
 
         public long GetId() => _expense.Id;
+
+        public DateTime GetDate() => _expense.Date;
     }
 }
