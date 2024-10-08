@@ -24,6 +24,8 @@ namespace CashFlow.Application.UseCases.Expenses.Update
 
             var expense = await _repository.GetById(id, loggedUser) ?? throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
 
+            expense.Tags.Clear();
+
             _mapper.Map(request, expense);
 
             _repository.Update(expense);

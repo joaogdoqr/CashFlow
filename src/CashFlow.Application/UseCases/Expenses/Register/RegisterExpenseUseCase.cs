@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CashFlow.Communication.Requests.Expenses;
-using CashFlow.Communication.Responses.Expenses;
+using CashFlow.Communication.Responses.Expense;
 using CashFlow.Domain.Entities;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
@@ -33,7 +33,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             return _mapper.Map<ResponseRegisterExpense>(expense);
         }
 
-        private void Validate(RequestExpense request)
+        private static void Validate(RequestExpense request)
         {
             var validator = new ExpenseValidator();
 
@@ -42,9 +42,7 @@ namespace CashFlow.Application.UseCases.Expenses.Register
             var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
 
             if(result.IsValid is false)
-            {
                 throw new ErrorOnValidationException(errorMessages);
-            }
         }
     }
 }

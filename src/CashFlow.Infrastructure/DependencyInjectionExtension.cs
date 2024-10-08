@@ -5,6 +5,7 @@ using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
 using CashFlow.Domain.Services.LoggedUser;
 using CashFlow.Infrastructure.DataAccess;
+using CashFlow.Infrastructure.DataAccess.Contexts;
 using CashFlow.Infrastructure.DataAccess.Repositories;
 using CashFlow.Infrastructure.Extensions;
 using CashFlow.Infrastructure.Security.Cryptography;

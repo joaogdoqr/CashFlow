@@ -31,6 +31,7 @@ namespace UseCases.Tests.Expenses.GetById
             result.Date.Should().Be(expense.Date);
             result.Amount.Should().Be(expense.Amount);
             result.PaymentType.Should().Be((PaymentType)expense.PaymentType);
+            result.Tags.Should().NotBeNullOrEmpty().And.BeEquivalentTo(expense.Tags.Select(tag => tag.Name));
         }
 
         [Fact]
@@ -48,7 +49,7 @@ namespace UseCases.Tests.Expenses.GetById
             result.Where(ex => ex.GetErros().Count == 1 && ex.GetErros().Contains(ResourceErrorMessages.EXPENSE_NOT_FOUND));
         }
         
-        private GetByIdUseCase CreateUseCase(User user, Expense? expense = null)
+        private static GetByIdUseCase CreateUseCase(User user, Expense? expense = null)
         {
             var repository = new ExpensesReadOnlyRepositoryBuilder().GetById(user, expense).Build();
             var mapper = MapperBuilder.Build();

@@ -1,6 +1,6 @@
 ﻿using CashFlow.Domain.Entities;
 using CashFlow.Domain.Services.LoggedUser;
-using CashFlow.Infrastructure.DataAccess;
+using CashFlow.Infrastructure.DataAccess.Contexts;
 using CashFlow.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;

@@ -1,6 +1,6 @@
 ﻿using CashFlow.Communication.Enums;
 
-namespace CashFlow.Communication.Responses.Expenses
+namespace CashFlow.Communication.Responses.Expense
 {
     public class ResponseExpense
     {
@@ -10,5 +10,6 @@ namespace CashFlow.Communication.Responses.Expenses
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
         public PaymentType PaymentType { get; set; }
+        public IList<Tags> Tags { get; set; } = [];
     }
 }

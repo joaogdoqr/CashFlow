@@ -2,7 +2,7 @@
 using CashFlow.Domain.Enums;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
-using CashFlow.Infrastructure.DataAccess;
+using CashFlow.Infrastructure.DataAccess.Contexts;
 using CommonTestsUtilities.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
